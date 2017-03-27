@@ -1,0 +1,48 @@
+//This takes a 2D matrix, and solves the robot haunted room problem below:
+/*
+After becoming famous, CodeBots decided to move to a new building and live together. 
+The building is represented by a rectangular matrix of rooms, each cell containing an integer - 
+the price of the room. Some rooms are free (their cost is 0), but that's probably because they are 
+haunted, so all the bots are afraid of them. That is why any room that is free or is located anywhere
+below a free room in the same column is not considered suitable for the bots.
+
+Help the bots calculate the total price of all the rooms that are suitable for them.
+*/
+
+
+
+int matrixElementsSum(int[][] matrix) {
+   
+         //i = rows
+         //j = cols
+         int i, j, totalCost=0;
+         
+         //Loop through the matrix
+         for (i = 0; i < matrix.GetLength(0); i++) //0 means get rows
+         {
+            for (j = 0; j < matrix[i].Length; j++) 
+            {
+               //If any of the values equal 0
+               if (matrix[i][j] == 0)
+               {
+                  for (int h=i; h<matrix.GetLength(0);h++)
+                  {
+                     matrix[h][j] = 0;
+                  }
+               }
+               else
+               {
+                  totalCost += matrix[i][j];
+               }
+               //Console.WriteLine("matrix[{0},{1}] = {2}", i, j, matrix[i,j]);
+            }
+         }
+         
+    return totalCost;
+    
+}
+
+// Two-dimensional GetLength example.
+//int[,] two = new int[5, 10];
+//Console.WriteLine(two.GetLength(0)); // Writes 5
+//Console.WriteLine(two.GetLength(1)); // Writes 10
